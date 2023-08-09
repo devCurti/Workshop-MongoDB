@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devCurti.WorkshopMongoDB.DTO.UserDTO;
+import com.devCurti.WorkshopMongoDB.entities.Post;
 import com.devCurti.WorkshopMongoDB.entities.User;
 import com.devCurti.WorkshopMongoDB.services.UserService;
 
@@ -68,6 +69,13 @@ public class UserResource {
 		user.setId(id);
 		userService.update(user);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping (value = "/{id}/posts") //Informando que toda vez que cair no endpoint será executado esse método
+	//ResponseEntity é utilizado pois serve para tratamentos de erros.
+	public ResponseEntity<List<Post>> getAllPosts(@PathVariable String id) {
+		User obj = userService.getById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 	
 }
