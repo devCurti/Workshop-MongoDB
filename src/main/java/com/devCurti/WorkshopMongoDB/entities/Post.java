@@ -29,6 +29,7 @@ public class Post implements Serializable {
 		this.title = title;
 		this.body = body;
 		this.authorDTO = author;
+		
 	}
 
 	public String getId() {
