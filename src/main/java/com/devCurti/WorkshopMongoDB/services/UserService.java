@@ -18,4 +18,9 @@ public class UserService {
 		List<User> result = repository.findAll();
 		return result;
 	}
+	
+//	public User getId(String id){
+//		User result = repository.findById(id).get();
+//		return result;
+//	}
 }
