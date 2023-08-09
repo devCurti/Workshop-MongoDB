@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,11 +30,12 @@ public class UserResource {
 		//É necessário chamar esse método e colocar o resultado no body()
 	}
 	
-//	@GetMapping(value = "/{id}")
-//	public User getById(@PathVariable String id) {
-//		User result = new User();
-//		result = userService.getId(id);
-//		return result;
-//	}
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<UserDTO> getById(@PathVariable String id) {
+		User result = new User();
+		result = userService.getById(id);
+		UserDTO user = new UserDTO(result);
+		return ResponseEntity.ok().body(user);
+	}
 	
 }
